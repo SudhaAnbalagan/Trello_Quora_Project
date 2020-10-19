@@ -19,7 +19,7 @@ public class CommonController {
     private CommonBusinessService commonBusinessService;
 
 
-
+    //Controller method for Get User
     @RequestMapping(method = RequestMethod.GET, path = "/userprofile/{userId}")
     public ResponseEntity<UserDetailsResponse> getUser(@PathVariable("userId") final String userUuid , @RequestHeader("authorization") final String authorization) throws AuthorizationFailedException , UserNotFoundException {
 

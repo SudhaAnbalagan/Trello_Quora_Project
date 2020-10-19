@@ -29,7 +29,7 @@ public class QuestionController {
     private UserBusinessService userBusinessService;
 
 
-
+    //Controller method for Create Question
     @RequestMapping(method = RequestMethod.POST, path = "/create", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<QuestionResponse> createQuestion(@RequestHeader("authorization") final String authorization, QuestionRequest questionRequest) throws AuthorizationFailedException {
         //String[] bearerToken = authorization.split("Bearer");
@@ -45,6 +45,7 @@ public class QuestionController {
 
     }
 
+    //Controller method for get All questions
     @RequestMapping(method = RequestMethod.GET, path = "/all",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<QuestionDetailsResponse>> getAllQuestions(@RequestHeader("authorization") final String accessToken) throws AuthorizationFailedException {
 
@@ -65,6 +66,7 @@ public class QuestionController {
     }
 
 
+    //Controller method for Edit Question
     @RequestMapping(method = RequestMethod.PUT, path = "/edit/{questionId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<QuestionEditResponse> editQuestion(
             @RequestHeader("authorization") final String accessToken,
@@ -80,6 +82,7 @@ public class QuestionController {
         return new ResponseEntity<QuestionEditResponse>(response, HttpStatus.OK);
     }
 
+    //Controller method for Delete Question
     @RequestMapping(method = RequestMethod.DELETE, path = "/delete/{questionId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<QuestionDeleteResponse> deleteQuestion(
             @RequestHeader("authorization") final String accessToken,
@@ -95,6 +98,7 @@ public class QuestionController {
     }
 
 
+    //Controller method for retrieving all the Questions by User
     @RequestMapping(method = RequestMethod.GET, path = "/all/{userId}")
     public ResponseEntity<List<QuestionDetailsResponse>> getQuestionsByUser(
             @RequestHeader("authorization") final String accessToken,

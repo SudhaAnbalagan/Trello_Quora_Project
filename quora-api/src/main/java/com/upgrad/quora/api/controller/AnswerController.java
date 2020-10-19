@@ -26,7 +26,7 @@ public class AnswerController {
     @Autowired
     private UserBusinessService userBusinessService;
 
-
+    //Controller method for Create Answer
     @RequestMapping(method = RequestMethod.POST,path = "/question/{questionId}/answer/create",produces = MediaType.APPLICATION_JSON_UTF8_VALUE,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerResponse> createAnswer (AnswerRequest   answerRequest, @RequestHeader("authorization") final String authorization,@PathVariable("questionId") final String questionId) throws InvalidQuestionException, AuthorizationFailedException {
         final AnswerEntity answerEntity=answerService.createAnswer(questionId,authorization,answerRequest.getAnswer());
@@ -37,6 +37,8 @@ public class AnswerController {
         return new ResponseEntity<AnswerResponse>(answerResponse, HttpStatus.OK);
 
     }
+
+    //Controller method for Edit Answer Content
     @RequestMapping(method = RequestMethod.PUT, path = "/answer/edit/{answerId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerEditResponse> editAnswerContent(
             @RequestHeader("authorization") final String accessToken,
@@ -52,6 +54,7 @@ public class AnswerController {
         return new ResponseEntity<AnswerEditResponse>(response, HttpStatus.OK);
     }
 
+    //Controller method for Delete Answer
     @RequestMapping(method = RequestMethod.DELETE, path = "/answer/delete/{answerId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerDeleteResponse> deleteAnswer(
             @RequestHeader("authorization") final String accessToken,
@@ -65,23 +68,10 @@ public class AnswerController {
 
         return new ResponseEntity<AnswerDeleteResponse>(response, HttpStatus.OK);
     }
-//    @RequestMapping(method = RequestMethod.GET, path = "answer/all/{questionId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    public ResponseEntity<List<AnswerDetailsResponse>> getAllAnswersToQuestions(@RequestHeader("authorization") final String accessToken,@PathVariable("questionId") final String questionId) throws AuthorizationFailedException {
-//
-//
-//        final List<AnswerEntity> allAnswers = answerService.getAllAnswersByUser(accessToken);
-//
-//        List<AnswerDetailsResponse> answerDetailsList = new LinkedList<>();
-//
-//        for (AnswerEntity answer : allAnswers) {
-//            AnswerDetailsResponse answerDetailsResponse = new AnswerDetailsResponse();
-//            answerDetailsResponse.setId(answer.getUuid());
-//            answerDetailsResponse.setAnswerContent(answer.getAnswer());
-//            answerDetailsList.add(answerDetailsResponse);
-//        }
-//
-//        return new ResponseEntity<List<AnswerDetailsResponse>>(answerDetailsList, HttpStatus.OK) ;
-//    }
+
+
+
+    //Controller method for Answers to all the Questions
 @RequestMapping(method = RequestMethod.GET, path = "answer/all/{questionId}",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 
