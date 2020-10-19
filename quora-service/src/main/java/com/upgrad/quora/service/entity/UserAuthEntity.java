@@ -1,7 +1,6 @@
 package com.upgrad.quora.service.entity;
 
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.OnDelete;
@@ -117,10 +116,10 @@ public class UserAuthEntity implements Serializable {
     this.logoutAt = logoutAt;
   }
 
-  @Override
-  public int hashCode() {
-    return new HashCodeBuilder().append(this).hashCode();
-  }
+ // @Override
+  //public int hashCode() {
+    //return new HashCodeBuilder().append(this).hashCode();
+  //}
 
   @Override
   public String toString() {

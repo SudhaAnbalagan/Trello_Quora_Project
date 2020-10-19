@@ -110,7 +110,7 @@ public class AnswerEntity implements Serializable {
 //  @Override
 //  public int hashCode() {
 //    return new HashCodeBuilder().append(this).hashCode();
-//  }
+// }
 
   @Override
   public String toString() {

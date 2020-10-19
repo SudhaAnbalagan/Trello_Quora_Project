@@ -18,12 +18,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-
-
-
-
-
-
 public class AnswerController {
 
     @Autowired

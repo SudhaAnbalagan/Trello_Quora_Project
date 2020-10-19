@@ -18,12 +18,12 @@ public class CommonController {
     @Autowired
     private CommonBusinessService commonBusinessService;
 
-    //@RequestMapping(method = RequestMethod.GET, path = "/users/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
 
     @RequestMapping(method = RequestMethod.GET, path = "/userprofile/{userId}")
     public ResponseEntity<UserDetailsResponse> getUser(@PathVariable("userId") final String userUuid , @RequestHeader("authorization") final String authorization) throws AuthorizationFailedException , UserNotFoundException {
 
-       // String [] bearerToken = authorization.split("Bearer");
+
 
         final UsersEntity userEntity = commonBusinessService.getUser(userUuid,authorization);
         UserDetailsResponse userDetailsResponse = new UserDetailsResponse().firstName(userEntity.getFirstName())
