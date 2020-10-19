@@ -15,14 +15,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "users", schema = "public",catalog = "quora")
-@NamedQueries(
-        {
-                @NamedQuery(name = "userByUserName", query = "select u from UsersEntity u where u.userName = :userName"),
-                @NamedQuery(name = "userByEmail", query = "select u from UsersEntity u where u.email =:email"),
-                @NamedQuery(name = "userByUuid", query = "select u from UsersEntity u where u.uuid =:uuid"),
-                @NamedQuery(name = "deleteUserById", query = "delete from UsersEntity u where u.uuid = :uuid")
-        }
-)
+@NamedQueries({
+        @NamedQuery(name = "getAllQuestions", query = "select q from QuestionEntity q"),
+        @NamedQuery(name = "getQuestionById", query = "select q from QuestionEntity q where q.uuid = :uuid"),
+        @NamedQuery(name = "editQuestionById", query = "update QuestionEntity q set q.content = :content where q.uuid = :uuid"),
+        @NamedQuery(name = "deleteQuestionById", query = "delete from QuestionEntity q where q.uuid = :uuid "),
+        @NamedQuery(name = "getAllQuestionsByUser", query = "select q from QuestionEntity q where q.user = :user")
+})
 public class UsersEntity implements Serializable {
 
   @Id

@@ -1,6 +1,5 @@
 package com.upgrad.quora.service.entity;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.OnDelete;
@@ -14,6 +13,12 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "answer", schema = "public",catalog = "quora")
+@NamedQueries({
+        @NamedQuery(name = "getAnswerById", query = "select q from AnswerEntity q where q.uuid = :uuid"),
+        @NamedQuery(name = "editAnswerById", query = "update AnswerEntity q set q.answer = :answer where q.uuid = :uuid"),
+        @NamedQuery(name = "deleteAnswerById", query = "delete from AnswerEntity q where q.uuid = :uuid "),
+        @NamedQuery(name = "getAllAnswersByUser", query = "select q from AnswerEntity q where q.question.id = :id")
+})
 public class AnswerEntity implements Serializable {
 
   @Id
@@ -81,7 +86,7 @@ public class AnswerEntity implements Serializable {
     return user;
   }
 
-  public void setUser(UsersEntity userId) {
+  public void setUser(UsersEntity user) {
     this.user = user;
   }
 
@@ -98,14 +103,14 @@ public class AnswerEntity implements Serializable {
     this.answer = answer;
   }
 
-  public void setQuestion(QuestionEntity questionEntityId) {
+  public void setQuestion(QuestionEntity question) {
     this.question = question;
   }
 
-  @Override
-  public int hashCode() {
-    return new HashCodeBuilder().append(this).hashCode();
-  }
+//  @Override
+//  public int hashCode() {
+//    return new HashCodeBuilder().append(this).hashCode();
+//  }
 
   @Override
   public String toString() {
